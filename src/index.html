@@ -13,9 +13,11 @@
       <input id="amount" type="number" min="0">
     </div>
     <br>
-    <div class="col-auto">
+    <div>
       <label for="fromCurrency">From</label>
-      <input class="fromCurrency" type="text">
+      <!-- <input id="fromCurrency" type="text"> -->
+      <select id="fromCurrency" class="dropdownList">
+      </select>
       <label for="toCurrency">To</label>
       <select id="toCurrency" class="dropdownList">
       </select>
@@ -30,5 +32,6 @@
       <input class="toCurrencyAmount" type="text" disabled>
     </div>
   </div>
+  <div class="showErrors"></div>
 </body>
 </html>
