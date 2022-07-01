@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Document</title>
+  <title>Currency Exchanger</title>
 </head>
-<body>
-  
+<body class="container">
+  <div class="jumbotron">
+    <h2>Currency Exchanger</h2>
+  </div>
+  <form>
+    <div>
+      <label for="amount">Amount</label>
+      <input id="amount" type="number">
+    </div>
+    <div>
+      <label for="fromCurrency">From</label>
+      <input class="fromCurrency" type="text">
+    </div>
+    <div>
+      <label for="toCurrency">To</label>
+      <input class="toCurrency" type="text">
+    </div>
+    <button class="btn btn-secondary" id="submit">Submit</button>
+  </form>
+  <div>
+    <input class="toCurrencyAmount" type="text">
+  </div>
 </body>
 </html>
