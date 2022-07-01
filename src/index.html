@@ -4,28 +4,31 @@
   <title>Currency Exchanger</title>
 </head>
 <body class="container">
-  <div class="jumbotron">
+  <div class="jumbotron text-center">
     <h2>Currency Exchanger</h2>
   </div>
-  <div>
+  <div class="box">
     <div>
       <label for="amount">Amount</label>
-      <input id="amount" type="number">
+      <input id="amount" type="number" min="0">
     </div>
-    <div>
+    <br>
+    <div class="col-auto">
       <label for="fromCurrency">From</label>
       <input class="fromCurrency" type="text">
-    </div>
-    <div>
       <label for="toCurrency">To</label>
-      <input class="toCurrency" type="text">
+      <select id="toCurrency" class="dropdownList">
+      </select>
     </div>
+    <br>
     <button class="btn btn-secondary" id="submit">Submit</button>
-  </div>
-  <div>
-    <input class="fromCurrencyAmount" type="text" disabled>
-    <label for="fromCurrencyAmount">=</label>
-    <input class="toCurrencyAmount" type="text" disabled>
+    <br>
+    <br>
+    <div>
+      <input class="fromCurrencyAmount" type="text" disabled>
+      <label for="fromCurrencyAmount">=</label>
+      <input class="toCurrencyAmount" type="text" disabled>
+    </div>
   </div>
 </body>
 </html>
