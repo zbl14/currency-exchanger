@@ -5,7 +5,7 @@ import $ from 'jquery';
 import { ExchangeService } from './services/exchange-service.js';
 
 
-let exchangeList = (response) => {
+let currencyList = (response) => {
   if (response.conversion_rates) {
     let currencyArr = Object.keys(response.conversion_rates);
     let currencylist = "";
@@ -16,47 +16,31 @@ let exchangeList = (response) => {
     $('#toCurrency').append(currencylist);
     const ratesStr = JSON.stringify(response.conversion_rates);
     sessionStorage.setItem("rate", ratesStr);
+  } else if (response["error-type"]) {
+    $('.showErrors').show().text(`${response["error-type"]}. The currency in question doesn't exist.`);
   } else {
     $('.showErrors').show().text(`There was an error processing your request: ${response}`);
   }
 };
 
-// let exchange = (response, toCurrency, amount) => {
-//   if (response.conversion_rates) {
-//     let toCurrencyAmount = `${response.conversion_rates[toCurrency]}` * amount;
-//     $(".fromCurrencyAmount").val(`${amount} ${response.base_code}`);
-//     $(".toCurrencyAmount").val(`${toCurrencyAmount} ${toCurrency}`);
-//   } else if (response["error-type"]) {
-//     $('.showErrors').show().text(`${response["error-type"]}. The currency in question doesn't exist.`);
-//   } else {
-//     $('.showErrors').show().text(`There was an error processing your request: ${response}`);
-//   }
-// };
-
-async function makeApiCallList(query) {
+async function makeApiCall(query) {
   const response = await ExchangeService.getExchangeRate(query);
-  exchangeList (response);
+  currencyList (response);
 }
-
-// async function makeApiCall(fromCurrency, toCurrency, amount) {
-//   const response = await ExchangeService.getExchangeRate(fromCurrency);
-//   exchange(response, toCurrency, amount);
-// }
 
 let exchange = (fromCurrency, toCurrency, amount) => {
   let data = JSON.parse(sessionStorage.rate);
-  let x = amount / data[fromCurrency] * data[toCurrency]
-  $(".fromCurrencyAmount").val(`${amount} ${fromCurrency}`);
-  $(".toCurrencyAmount").val(x);
-}
+  let toCurrencyAmount = amount / data[fromCurrency] * data[toCurrency];
+  $(".fromCurrencyAmount").val(`${parseFloat(amount).toFixed(2)} ${fromCurrency}`);
+  $(".toCurrencyAmount").val(`${toCurrencyAmount.toFixed(2)} ${toCurrency}`);
+};
 
 $(document).ready(function() {
-  makeApiCallList("USD");
+  makeApiCall("USD");
   $('#submit').click(function() {
     let fromCurrency = $('#fromCurrency').val();
     let toCurrency = $('#toCurrency').val();
     let amount = $('#amount').val();
-    exchange(fromCurrency, toCurrency, amount)
-    // makeApiCall(fromCurrency, toCurrency, amount);
+    exchange(fromCurrency, toCurrency, amount);
   });
 }); 
