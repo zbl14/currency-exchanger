@@ -4,24 +4,28 @@ import './css/styles.css';
 import $ from 'jquery';
 import { ExchangeService } from './services/exchange-service.js';
 
-let exchange = (from, to) => {
-  let to = to;
-  if (from.conversion_rates) {
-    $(".toCurrency").val(`${from.conversion_rates.to}`);
+let exchange = (response, toCurrency, amount) => {
+  console.log("HI HI");
+  if (response.conversion_rates) {
+    let toCurrencyAmount = `${response.conversion_rates[toCurrency]}` * amount;
+    $(".toCurrencyAmount").text(`${toCurrencyAmount}`);
   } else {
     $('.showErrors').text(`There was an error processing your request: ${response}`);
   }
+};
+
+async function makeApiCall(fromCurrency, toCurrency, amount) {
+  console.log("HI");
+  const response = await ExchangeService.getExchangeRate(fromCurrency);
+  console.log(response);
+  exchange(response, toCurrency, amount);
 }
 
-async function makeApiCall(from, to) {
-  const response = await ExchangeService.getExchangeRate(from);
-  exchange(response, to);
-}
-
-$(document).ready(()=> {
-  $('#submit').click(() => {
+$(document).ready(function() {
+  $('#submit').click(function() {
     let fromCurrency = $('.fromCurrency').val();
     let toCurrency = $('.toCurrency').val();
-    makeApiCall(fromCurrency, toCurrency);
-  })
+    let amount = $('#amount').val();
+    makeApiCall(fromCurrency, toCurrency, amount);
+  });
 }); 
