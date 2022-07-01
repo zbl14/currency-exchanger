@@ -1,31 +1,47 @@
-# (Application Name)
+# Currency Exchanger
 
-#### (Brief Description of Application)
+#### An currency exchanger covers 161 currencies.
 
-#### By (Your Name Here)
+#### By Zhibin Liang
 
 ## Technologies Used
 
-* _List all_
-* _the major technologies_
-* _you used in your project_
-* _here_
+* Bootstrap 
+* CSS 
+* HTML 
+* JavaScript
+* jQuery
+* Webpack
 
 ## Description
+An currency exchanger covers 161 currencies.
 
 ## Setup/Installation Requirements
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
+1. Sign-up with your email to get an API key with the following link
+```sh 
+https://app.exchangerate-api.com/sign-up
+```
+2. Clone the repo
+```sh
+https://github.com/zbl14/currency-exchanger.git
+```
+3. Open terminal, use "cd" command to reach the directory named "currency-exchanger"
+4. Create a .env file in the root directory and store your API key in .env by replacing "here" with your API key
+```sh
+API_KEY="here"
+```
+5. Use "npm install" command to set up the enviroment
+6. Use "npm run start" command to open the webpage app  
+7. Pick the currency for exchange from and exchange to, then click submit
 
 ## Known Bugs
-
-* _Any known issues_
-* _should go here_
+* NA
 
 ## License
+MIT
 
 ## Contact Information
+Zhibin Liang <ifthereisoneday@gmail.com>
+
+Copyright &copy; 2022 Zhibin Liang
